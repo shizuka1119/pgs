@@ -1,0 +1,15 @@
+<h1>ログイン</h1>
+
+<%= form_tag(login_path) do %>
+
+<p>名前</p>
+
+<input name="email" value="<%= @email %>">
+
+<p>パスワード</p>
+
+<input type="password" name="password" value="<%= @password %>">
+
+<input type="submit" value="ログイン">
+
+<% end %>
