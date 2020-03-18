@@ -10,29 +10,31 @@
   </head>
 
   <body>
+    <header>
       <div class="header-logo">
         <% if @current_user %>
-          <%= link_to("PGS", "/posts/index") %>
+          <%= link_to "PGS",items_path %>
         <% else %>
-          <%= link_to("PGS", "/") %>
+          <%= link_to "PGS", "/" %>
         <% end %>
       </div>
       <ul class="header-menus">
+
         <% if @current_user %>
           <li>
-            <%= link_to @current_user.name, "/users/#{@current_user.id}" %>
+            <%= link_to(@current_user.name,"/users/#{@current_user.id}") %>
           </li>
           <li>
             <%= link_to "投稿一覧",items_path %>
           </li>
           <li>
-            <%= link_to "新規投稿",new_items_path %>
+            <%= link_to "新規投稿",new_item_path %>
           </li>
           <li>
             <%= link_to "ユーザー一覧",users_path %>
           </li>
           <li>
-            <%= link_to "ログアウト",logout_path %>
+            <%= link_to "ログアウト",logout_path,{method: :post} %>
           </li>
         <% else %>
           <li>

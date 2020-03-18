@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  #ログインしていないと使用不可！
+  before_action :authenticate_user
+
   def index
       @items = Item.all
   end
@@ -13,8 +16,12 @@ class ItemsController < ApplicationController
 
   def create
   	  @item = Item.new(item_params)
-  	  @item.save
-  	  redirect_to item_path(@item)
+  	  if @item.save
+         flash[:notice] = "投稿を作成しました"
+  	     redirect_to item_path(@item)
+      else
+         render("items/new")
+      end
   end
 
   def edit

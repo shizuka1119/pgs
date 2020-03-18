@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :users
   get 'login' => 'users#login_form'
   post 'login' => 'users#login'
-  get 'signup' => 'users#new'
   post 'logout' => 'users#logout'
+  get 'signup' => 'users#new'
+
+
 
 
   resources :items,only:[:index,:new,:create,:show,:edit,:update]
