@@ -11,3 +11,10 @@
   </div>
 </div>
 
+<h2>ノート一覧</h2>
+<% @items.each do |item| %>
+<p><%= link_to item.title, item_path(item) %></p>
+<p><%= item.category %></p>
+<% end %>
+
+

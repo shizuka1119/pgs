@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   #ログイン中は使用不可！
   before_action:forbid_login_user,{only: [:new, :create, :login_form, :login]}
   #本人でないと編集不可！
-  before_action:ensure_correct_user,{only: [:edit, :update]}
+  before_action:ensure_correct_user,{only: [:edit, :update, :destory]}
 
   def index
   	@users = User.all
@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @items = @user.items
   end
 
   def create
@@ -41,6 +42,12 @@ class UsersController < ApplicationController
     else
       redirect_to edit_user_path(@user.id)
     end
+  end
+
+  def destory
+    @user = User.find(params[:id])
+    @user.destory
+    redirect_to("/")
   end
 
   def login_form
