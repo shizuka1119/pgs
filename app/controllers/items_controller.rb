@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   #ログインしていないと使用不可！
-  before_action :authenticate_user
+  before_action:authenticate_user,{only:[:edit, :update, :destory]}
+  #本人でないと編集不可！
+  before_action:ensure_correct_user,{only: [:edit, :update, :destory]}
 
   def index
       @items = Item.all

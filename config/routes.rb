@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :admins
+  get 'a_login' => 'admins#login_form'
+  post 'a_login' => 'asmins#login'
+  post 'a_logout' => 'admins#logout'
+  get 'a_signup' => 'admins#new'
+
   get '/' => 'homes#top'
 
   resources :users
@@ -16,3 +22,4 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+

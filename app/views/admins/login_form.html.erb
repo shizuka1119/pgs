@@ -1,0 +1,17 @@
+<h1>ログイン</h1>
+
+<%= form_tag("a_login") do %>
+
+<p>名前</p>
+
+<input name="name" value="<%= @name %>">
+
+<p>パスワード</p>
+
+<input type="password" name="password" value="<%= @password %>">
+
+<input type="submit" value="ログイン">
+
+<% end %>
+
+

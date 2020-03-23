@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #ログインしていないと使用不可！
-  before_action:authenticate_user,{only:[:index, :show, :edit, :update]}
+  before_action:authenticate_user,{only:[:edit, :update]}
   #ログイン中は使用不可！
   before_action:forbid_login_user,{only: [:new, :create, :login_form, :login]}
   #本人でないと編集不可！
