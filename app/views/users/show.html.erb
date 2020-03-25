@@ -3,11 +3,14 @@
   <div class="container">
     <div class="user">
       <h2><%= @user.name %></h2>
+      <h2><%= render 'relationships/follow_button', user: @user %></h2>
       <p><%= @user.email %></p>
         <%= link_to "Edit", edit_user_path %>
     </div>
   </div>
 </div>
+
+
 
 <h2>ノート一覧</h2>
 <% @items.each do |item| %>

@@ -7,6 +7,7 @@
 				<th>タイトル</th>
 				<th>ジャンル</th>
 				<th>内容</th>
+				<th>いいね</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -15,10 +16,24 @@
 				<td><%= @item.title %></td>
 				<td><%= @item.category %></td>
 				<td><%= @item.body %></td>
+				<td><% if Like.find_by(user_id: @current_user.id,item_id: @item.id)%>
+					<%= form_for(@like, url: "/like/#{@item.id}/destroy") do |f| %>
+                    <%= f.hidden_field :user_id, value: @current_user.id %>
+                    <%= f.hidden_field :item_id, value: @item.id %>
+                    <%= f.submit "いいね取り消し", class: "btn btn-primary" %>
+                    <% end %>
+                <% else %>
+                <%= form_for(@like, url: "/like/#{@item.id}/create") do |f| %>
+                    <%= f.hidden_field :user_id, value: @current_user.id %>
+                    <%= f.hidden_field :item_id, value: @item.id %>
+                    <%= f.submit "いいね", class: "btn btn-primary" %>
+                    <% end %>
+                <% end %>
+                </td>
 			</tr>
 		</tbody>
 	</table>
 
 <%= link_to "Edit", edit_item_path %>
 <%= link_to "index", items_path %>
-<%= link_to "Destory", destroy_item_path,method: :delete %>
+<%= link_to "Destory", destroy_item_path,{method: :delete} %>
