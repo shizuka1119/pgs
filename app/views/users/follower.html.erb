@@ -1,0 +1,32 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= "/user_images/#{@user.profile_image}" %>">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <% if @user.id == @current_user.id %>
+        <%= link_to "Edit", edit_user_path %>
+      <% end %>
+    </div>
+    <ul class="user-tabs">
+      <li><%= link_to("Note", "/users/#{@user.id}") %></li>
+      <li><%= link_to("Good", "/users/#{@user.id}/likes") %></li>
+      <li><%= link_to("Following", "/users/#{@user.id}/following") %></li>
+      <li class="active"><%= link_to("Follower", "/users/#{@user.id}/follower") %></li>
+    </ul>
+    <% @likes.each do |like| %>
+      <% item = Item.find_by(id: like.item_id) %>
+      <div class="items-index-item">
+        <div class="item-left">
+          <img src="<%= "/user_images/#{item.user.profile_image}" %>">
+        </div>
+        <div class="item-right">
+          <div class="item-user-name">
+            <%= link_to(item.user.name, "/users/#{item.user.id}") %>
+          </div>
+          <%= link_to(item.title, "/items/#{item.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

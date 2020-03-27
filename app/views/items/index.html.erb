@@ -1,24 +1,17 @@
-<h1>記事一覧</h1>
-
-<table class="table">
-		<thead class="thead-light">
-			<tr class="active">
-				<th>記事ID</th>
-				<th>ユーザー</th>
-				<th>タイトル</th>
-				<th>ジャンル</th>
-				<th>内容</th>
-			</tr>
-		</thead>
-		<% @items.each do |item| %>
-		<tbody>
-			<tr>
-				<td><%= link_to item.id,item_path(item) %></td>
-				<th><%= item.user_id %></th>
-				<td><%= item.title %></td>
-				<td><%= item.category %></td>
-				<td><%= item.body %></td>
-			</tr>
-		</tbody>
-		<% end %>
-</table>
+<div class="main items-index">
+  <div class="container">
+    <h1 class="users-heading">Note Index</h1>
+  	<% @items.each do |item| %>
+      <div class="items-index-item">
+        <div class="item-left">
+        </div>
+        <div class="item-right">
+          <div class="item-user-name">
+           <%= link_to item.user.name, "/users/#{item.user.id}"%>
+          </div>
+           <%= link_to item.title, item_path(item) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

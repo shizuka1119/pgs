@@ -1,17 +1,15 @@
-<h1>ユーザー一覧</h1>
-
-<table class="table">
-		<thead class="thead-light">
-			<tr class="active">
-				<th>名前</th>
-				<th>フォロー</th>
-		</thead>
-		<% @users.each do |user| %>
-		<tbody>
-			<tr>
-				<td><%= link_to user.name, user_path(user.id) %></td>
-			</tr>
-		</tbody>
-		<% end %>
-</table>
-
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">User Index</h1>
+    <% @users.each do |user| %>
+      <div class="users-index-item">
+        <div class="user-left">
+          <img src="<%= "/user_images/#{user.profile_image}" %>">
+        </div>
+        <div class="user-right">
+        　 <%= link_to user.name, user_path(user.id) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

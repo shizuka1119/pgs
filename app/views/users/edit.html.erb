@@ -1,20 +1,23 @@
-
-<h1>ユーザー編集</h1>
-
-<%= form_for(@user) do |f| %>
-
-<h4>ユーザー名</h4>
-<%= f.text_field :name %>
-
-<h4>メールアドレス</h4>
-<%= f.email_field :email %>
-
-<h4>パスワード</h4>
-<%= f.password_field :password %>
-
-<h4></h4>
-<%= f.submit '登録' %>
-
-<% end %>
-
-
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">User Edit</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+      　<%= form_for(@user) do |f| %>
+          <p>Name</p>
+          <%= f.text_field :name %>
+          <p>Mail</p>
+          <%= f.email_field :email %>
+          <p>Profile image</p>
+          <%= f.file_field :profile_image%>
+          <%= f.submit 'Save' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,39 +1,32 @@
-<h1>記事詳細</h1>
-
-<table class="table">
-		<thead class="thead-light">
-			<tr class="active">
-				<th>記事ID</th>
-				<th>タイトル</th>
-				<th>ジャンル</th>
-				<th>内容</th>
-				<th>いいね</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><%= @item.id %></td>
-				<td><%= @item.title %></td>
-				<td><%= @item.category %></td>
-				<td><%= @item.body %></td>
-				<td><% if Like.find_by(user_id: @current_user.id,item_id: @item.id)%>
-					<%= form_for(@like, url: "/like/#{@item.id}/destroy") do |f| %>
-                    <%= f.hidden_field :user_id, value: @current_user.id %>
-                    <%= f.hidden_field :item_id, value: @item.id %>
-                    <%= f.submit "いいね取り消し", class: "btn btn-primary" %>
-                    <% end %>
-                <% else %>
-                <%= form_for(@like, url: "/like/#{@item.id}/create") do |f| %>
-                    <%= f.hidden_field :user_id, value: @current_user.id %>
-                    <%= f.hidden_field :item_id, value: @item.id %>
-                    <%= f.submit "いいね", class: "btn btn-primary" %>
-                    <% end %>
-                <% end %>
-                </td>
-			</tr>
-		</tbody>
-	</table>
-
-<%= link_to "Edit", edit_item_path %>
-<%= link_to "index", items_path %>
-<%= link_to "Destory", destroy_item_path,{method: :delete} %>
+<div class="main items-show">
+  <div class="container">
+    <div class="items-show-item">
+      <h1><%= @item.title %></h1>
+	    <p>Category:<%= @item.category %><p>
+	    <p><%= simple_format(@item.body) %></p>
+      <div class="item-time">
+        <%= @item.created_at %>
+      </div>
+      <% if Like.find_by(user_id: @current_user.id,item_id: @item.id)%>
+	  	 <%= form_for(@like, url: "/like/#{@item.id}/destroy") do |f| %>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.submit "Cancel", class: "btn-gradient-radius" %>
+        <% end %>
+      <% else %>
+        <%= form_for(@like, url: "/like/#{@item.id}/create") do |f| %>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.submit "Good", class: "btn-gradient-radius" %>
+        <% end %>
+      <% end %>
+      <%= @likes_count %>
+      <% if @item.user_id == @current_user.id %>
+        <div class="item-menus">
+          <%= link_to "Edit", edit_item_path %>
+          <%= link_to "Destory", destroy_item_path,{method: :delete} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   post 'logout' => 'users#logout'
   get 'signup' => 'users#new'
 
+  get 'users/:id/likes' => 'users#like'
+  get 'users/:id/following' => 'users#following'
+  get 'users/:id/follower' => 'users#follower'
+
   resources :items,only:[:index,:new,:create,:show,:edit,:update]
   delete 'items/:id' => 'items#destroy', as: 'destroy_item'
 

@@ -1,21 +1,33 @@
-
 <div class="main user-show">
   <div class="container">
     <div class="user">
+      <img src="<%= "/user_images/#{@user.profile_image}" %>">
       <h2><%= @user.name %></h2>
-      <h2><%= render 'relationships/follow_button', user: @user %></h2>
       <p><%= @user.email %></p>
+
+      <p><%= render 'relationships/follow_button', user: @user %></p>
+      <% if @user.id == @current_user.id %>
         <%= link_to "Edit", edit_user_path %>
+      <% end %>
     </div>
+    <ul class="user-tabs">
+      <li class="active"><%= link_to("Note", "/users/#{@user.id}") %></li>
+      <li><%= link_to("Good", "/users/#{@user.id}/likes") %></li>
+      <li><%= link_to("Following", "/users/#{@user.id}/following") %></li>
+      <li><%= link_to("Follower", "/users/#{@user.id}/follower") %></li>
+    </ul>
+    <% @items.each do |item| %>
+      <div class="items-index-item">
+        <div class="item-left">
+          <img src="<%= "/user_images/#{item.user.profile_image}" %>">
+        </div>
+        <div class="item-right">
+          <div class="item-user-name">
+          	<%= link_to item.user.name, "/users/#{item.user.id}"%>
+          </div>
+            <%= link_to item.title, item_path(item) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
-
-
-
-<h2>ノート一覧</h2>
-<% @items.each do |item| %>
-<p><%= link_to item.title, item_path(item) %></p>
-<p><%= item.category %></p>
-<% end %>
-
-

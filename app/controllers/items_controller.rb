@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   #ログインしていないと使用不可！
-  before_action:authenticate_user,{only:[:edit, :update, :destory]}
+  before_action:authenticate_user,{only:[:show, :edit, :update, :destory]}
   #本人でないと編集不可！
   before_action:ensure_correct_user,{only: [:edit, :update, :destory]}
 
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   	  @item = Item.new(item_params)
       @item.user_id = @current_user.id
   	  if @item.save
-         flash[:notice] = "投稿を作成しました"
+         flash[:notice] = "Note Create"
   	     redirect_to item_path(@item)
       else
          render("items/new")
@@ -42,6 +42,14 @@ class ItemsController < ApplicationController
   	  @item = Item.find(params[:id])
   	  @item.destroy
   	  redirect_to items_path
+  end
+
+  def ensure_correct_user
+    @item = Item.find_by(id: params[:id])
+    if @item.user_id != @current_user.id
+       flash[:notice] = "Unauthorized"
+       redirect_to items_path
+    end
   end
 
   private

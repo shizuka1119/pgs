@@ -1,16 +1,23 @@
-<h1>編集</h1>
-
-<%= form_for(@item) do |f| %>
-
-<h4>タイトル</h4>
-<%= f.text_field :title %>
-
-<h4>カテゴリー</h4>
-<%= f.text_field :category %>
-
-<h4>本文</h4>
-<%= f.text_area :body %>
-
-<%= f.submit '投稿' %>
-
-<% end %>
+<div class="main items-new">
+  <div class="container">
+    <h1 class="form-heading">Note Edit</h1>
+    <%= form_for(@item) do |f| %>
+      <div class="form">
+        <div class="form-body">
+           <div class="form-error">
+              <% @item.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+            </div>
+          <p>Title</p>
+            <%= f.text_field :title %>
+          <p>Category</p>
+            <%= f.text_field :category %>
+          <p>Note</p>
+            <%= f.text_area :body %>
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

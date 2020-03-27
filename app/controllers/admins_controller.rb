@@ -52,11 +52,11 @@ class AdminsController < ApplicationController
     @admin = Admin.find_by(name: params[:name],password: params[:password])
     if @admin
       session[:admin_id] = @admin.id
-      flash[:notice] = "ログインしました"
+      flash[:notice] = "Login"
       redirect_to admin_path(@admin.id)
     else
-      @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
+      @error_message = "Error"
+      @name = params[:name]
       @password = params[:password]
 
       #renderへ修正したい
@@ -66,7 +66,7 @@ class AdminsController < ApplicationController
 
   def logout
     session[:admin_id] = nil
-    flash[:notice] = "ログアウトしました"
+    flash[:notice] = "Logout"
     redirect_to a_login_path
   end
 
