@@ -4,6 +4,9 @@
   	<% @items.each do |item| %>
       <div class="items-index-item">
         <div class="item-left">
+            <% if item.user.profile_image.attached? %>
+              <%= image_tag item.user.profile_image %>
+            <% end %>
         </div>
         <div class="item-right">
           <div class="item-user-name">

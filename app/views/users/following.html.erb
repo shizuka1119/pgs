@@ -1,7 +1,9 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
-      <img src="<%= "/user_images/#{@user.profile_image}" %>">
+      <% if @user.profile_image.attached? %>
+        <%= image_tag @user.profile_image %>
+      <% end %>
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
       <% if @user.id == @current_user.id %>
@@ -18,7 +20,9 @@
       <% user = User.find_by(id: r.user_id) %>
       <div class="items-index-item">
         <div class="item-left">
-          <img src="<%= "/user_images/#{r.user.profile_image}" %>">
+          <% if r.follow.profile_image.attached? %>
+            <%= image_tag r.follow.profile_image %>
+          <% end %>
         </div>
         <div class="item-right">
           <div class="item-user-name">
