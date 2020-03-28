@@ -14,20 +14,19 @@
       <li class="active"><%= link_to("Following", "/users/#{@user.id}/following") %></li>
       <li><%= link_to("Follower", "/users/#{@user.id}/follower") %></li>
     </ul>
-    <% @following.each do |following| %>
-      <% user = User.find_by(id: user.)%>
-      <% item = Item.find_by(id: like.item_id) %>
+    <% @relationships.each do |r| %>
+      <% user = User.find_by(id: r.user_id) %>
       <div class="items-index-item">
         <div class="item-left">
-          <img src="<%= "/user_images/#{item.user.profile_image}" %>">
+          <img src="<%= "/user_images/#{r.user.profile_image}" %>">
         </div>
         <div class="item-right">
           <div class="item-user-name">
-            <%= link_to(item.user.name, "/users/#{item.user.id}") %>
+            <%= link_to(r.follow.name, "/users/#{r.follow.id}") %>
           </div>
-          <%= link_to(item.title, "/items/#{item.id}") %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+

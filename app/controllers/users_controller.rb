@@ -26,12 +26,12 @@ class UsersController < ApplicationController
 
   def following
     @user = User.find(params[:id])
-    @following = @user
+    @relationships = Relationship.where(user_id: @user.id)
   end
 
   def follower
     @user = User.find(params[:id])
-    @followers = @user
+    @relationships = Relationship.where(follow_id: @user.id)
   end
 
   def create

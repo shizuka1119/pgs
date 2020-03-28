@@ -12,13 +12,7 @@
           <p>Title</p>
             <%= f.text_field :title %>
           <p>category</p>
-              <li><%= f.radio_button :category, :Ruby %>
-                  <%= f.label :category, "Ruby", {value: :Ruby } %>
-              </li>
-              <li><%= f.radio_button :category, :Java %>
-                  <%= f.label :category, "Java", {value: :Java } %>
-              </li>
-
+            <%= f.text_field :category %>
           <p>Note</p>
             <%= f.text_area :body%>
           <%= f.submit 'Sava' %>

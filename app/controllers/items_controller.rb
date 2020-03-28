@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
   def show
   	  @item = Item.find(params[:id])
       @like = Like.new
+      if @like.save
+         flash[:notice] = "Thank you!"
+      end
   end
 
   def new
