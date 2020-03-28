@@ -9,6 +9,9 @@
       <% if @user.id == @current_user.id %>
         <%= link_to "Edit", edit_user_path %>
       <% end %>
+      <% if @current_admin %>
+        <%= link_to "Edit", edit_user_path %>
+      <% end %>
     </div>
     <ul class="user-tabs">
       <li class="active"><%= link_to("Note", "/users/#{@user.id}") %></li>

@@ -16,6 +16,7 @@
           <p>Profile image</p>
           <%= f.file_field :profile_image%>
           <%= f.submit 'Save' %>
+          <p><%= link_to "Account Delete", destroy_user_path, method: :delete %></p>
         <% end %>
       </div>
     </div>

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post 'a_logout' => 'admins#logout'
   get 'a_signup' => 'admins#new'
 
-  resources :users
+  resources :users,only:[:index,:new,:create,:show,:edit,:update]
+  delete 'users/:id/destroy' => 'users#destroy', as: 'destroy_user'
   get 'login' => 'users#login_form'
   post 'login' => 'users#login'
   post 'logout' => 'users#logout'

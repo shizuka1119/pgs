@@ -58,9 +58,8 @@ class AdminsController < ApplicationController
       @error_message = "Error"
       @name = params[:name]
       @password = params[:password]
-
-      #renderへ修正したい
       redirect_to a_login_path
+      byebug
     end
   end
 
