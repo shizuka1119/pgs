@@ -8,13 +8,13 @@
         <%= @item.created_at %>
       </div>
       <% if Like.find_by(user_id: @current_user.id,item_id: @item.id)%>
-	  	 <%= form_for(@like, url: "/like/#{@item.id}/destroy") do |f| %>
+	  	 <%= form_for @like, url: destroy_like_path(@item.id) do |f| %>
           <%= f.hidden_field :user_id, value: @current_user.id %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.submit "Cancel", class: "btn-gradient-radius" %>
         <% end %>
       <% else %>
-        <%= form_for(@like, url: "/like/#{@item.id}/create") do |f| %>
+        <%= form_for @like, url: create_like_path(@item.id) do |f| %>
           <%= f.hidden_field :user_id, value: @current_user.id %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.submit "Good", class: "btn-gradient-radius" %>
@@ -24,7 +24,6 @@
       <% if @item.user_id == @current_user.id %>
         <div class="item-menus">
           <%= link_to "Edit", edit_item_path %>
-          <%= link_to "Destory", destroy_item_path,{method: :delete} %>
         </div>
       <% end %>
     </div>

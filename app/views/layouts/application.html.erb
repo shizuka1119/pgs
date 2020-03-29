@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -22,10 +22,10 @@
             <%= link_to(@current_user.name,"/users/#{@current_user.id}") %>
           </li>
           <li>
-            <%= link_to "Note Index",items_path %>
+            <%= link_to "New Note",new_item_path %>
           </li>
           <li>
-            <%= link_to "New Note",new_item_path %>
+            <%= link_to "Note Index",items_path %>
           </li>
           <li>
             <%= link_to "User Index",users_path %>
@@ -36,12 +36,6 @@
         <% elsif @current_admin %>
           <li>
             <%= link_to(@current_admin.name,"/admins/#{@current_admin.id}") %>
-          </li>
-          <li>
-            <%= link_to "Item index",items_path %>
-          </li>
-          <li>
-            <%= link_to "User Index",users_path %>
           </li>
           <li>
             <%= link_to "Logout",a_logout_path,{method: :post} %>

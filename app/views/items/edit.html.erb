@@ -15,6 +15,7 @@
             <%= f.text_field :category %>
           <p>Note</p>
             <%= f.text_area :body %>
+          <%= link_to "Delete", destroy_item_path,{method: :delete} %>
           <%= f.submit 'Save' %>
         </div>
       </div>

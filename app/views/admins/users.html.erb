@@ -1,0 +1,32 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <% if @admin.profile_image.attached? %>
+        <%= image_tag @admin.profile_image %>
+      <% end %>
+      <h2><%= @admin.name %></h2>
+      <p><%= @admin.email %></p>
+      <% if @current_admin %>
+        <%= link_to "Edit", edit_user_path %>
+      <% end %>
+    </div>
+    <ul class="user-tabs">
+      <li><%= link_to "Note", admin_path %></li>
+      <li class="active"><%= link_to "Users", admins_users_path %></li>
+    </ul>
+    <% @users.each do |user| %>
+      <div class="items-index-item">
+        <div class="item-left">
+          <% if user.profile_image.attached? %>
+            <%= image_tag user.profile_image %>
+          <% end %>
+        </div>
+        <div class="item-right">
+          <div class="item-user-name">
+            <%= link_to user.name, edit_user_path(user.id)%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

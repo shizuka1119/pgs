@@ -16,10 +16,10 @@
       <% end %>
     </div>
     <ul class="user-tabs">
-      <li class="active"><%= link_to("Note", "/users/#{@user.id}") %></li>
-      <li><%= link_to("Good", "/users/#{@user.id}/likes") %></li>
-      <li><%= link_to("Following", "/users/#{@user.id}/following") %></li>
-      <li><%= link_to("Follower", "/users/#{@user.id}/follower") %></li>
+      <li class="active"><%= link_to "Note", user_path %></li>
+      <li><%= link_to "Good", like_users_path %></li>
+      <li><%= link_to "Following", following_users_path %></li>
+      <li><%= link_to "Follower", follower_users_path %></li>
     </ul>
     <% @items.each do |item| %>
       <div class="items-index-item">
@@ -30,7 +30,7 @@
         </div>
         <div class="item-right">
           <div class="item-user-name">
-          	<%= link_to item.user.name, "/users/#{item.user.id}"%>
+          	<%= link_to item.user.name, user_path(item.user) %>
           </div>
             <%= link_to item.title, item_path(item) %>
         </div>

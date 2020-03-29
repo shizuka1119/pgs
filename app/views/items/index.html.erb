@@ -10,7 +10,7 @@
         </div>
         <div class="item-right">
           <div class="item-user-name">
-           <%= link_to item.user.name, "/users/#{item.user.id}"%>
+           <%= link_to item.user.name, user_path(item.user)%>
           </div>
            <%= link_to item.title, item_path(item) %>
         </div>

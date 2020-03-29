@@ -2,8 +2,9 @@ class AdminsController < ApplicationController
   #ログイン中は使用不可！
   before_action:forbid_login_admin,{only: [:new, :create, :login_form, :login]}
 
-  def index
-  	@admins = Admin.all
+  def users
+    @admin = Admin.find(params[:id])
+    @users = User.all
   end
 
   def new
@@ -12,13 +13,14 @@ class AdminsController < ApplicationController
 
   def show
     @admin = Admin.find(params[:id])
+    @items = Item.all
   end
 
   def create
     @admin = Admin.new(admin_params)
     if @admin.save
        session[:admin_id] = @admin.id
-       flash[:notice] = "管理者登録が完了しました"
+       flash[:notice] = "Sign in Complete"
        redirect_to admin_path(@admin.id)
     else
       redirect_to new_admin_path
@@ -32,7 +34,7 @@ class AdminsController < ApplicationController
   def update
     @admin = Admin.find(params[:id])
     if @admin.update(admin_params)
-       flash[:notice] = "管理者情報を編集しました"
+       flash[:notice] = "Edit Complete"
       redirect_to admin_path(@admin.id)
     else
       redirect_to edit_admin_path(@admin.id)
@@ -40,9 +42,9 @@ class AdminsController < ApplicationController
   end
 
   def destory
-    @admin = Admin.find(params[:id])
-    @admin.destory
-    redirect_to("/")
+    @user = User.find(params[:id])
+    @user.destory
+    redirect_to admins_users_path
   end
 
   def login_form
@@ -59,7 +61,6 @@ class AdminsController < ApplicationController
       @name = params[:name]
       @password = params[:password]
       redirect_to a_login_path
-      byebug
     end
   end
 

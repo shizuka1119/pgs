@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   #ログインしていないと使用不可！
-  before_action:authenticate_user,{only:[:show, :edit, :update]}
+  before_action:authenticate_user,{only:[:show, :update]}
   #ログイン中は使用不可！
   before_action:forbid_login_user,{only: [:new, :create, :login_form, :login]}
   #本人でないと編集不可！
-  before_action:ensure_correct_user,{only: [:edit, :update, :destory]}
+  before_action:ensure_correct_user,{only: [:update]}
 
   def index
   	@users = User.all

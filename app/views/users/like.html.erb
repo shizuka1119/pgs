@@ -11,10 +11,10 @@
       <% end %>
     </div>
     <ul class="user-tabs">
-      <li><%= link_to("Note", "/users/#{@user.id}") %></li>
-      <li class="active"><%= link_to("Good", "/users/#{@user.id}/likes") %></li>
-      <li><%= link_to("Following", "/users/#{@user.id}/following") %></li>
-      <li><%= link_to("Follower", "/users/#{@user.id}/follower") %></li>
+      <li><%= link_to "Note", user_path %></li>
+      <li class="active"><%= link_to "Good", like_users_path %></li>
+      <li><%= link_to "Following", following_users_path %></li>
+      <li><%= link_to "Follower", follower_users_path %></li>
     </ul>
     <% @likes.each do |like| %>
       <% item = Item.find_by(id: like.item_id) %>
@@ -26,9 +26,9 @@
         </div>
         <div class="item-right">
           <div class="item-user-name">
-            <%= link_to(item.user.name, "/users/#{item.user.id}") %>
+            <%= link_to item.user.name, user_path(item.user) %>
           </div>
-          <%= link_to(item.title, "/items/#{item.id}") %>
+          <%= link_to item.title, item_path(item) %>
         </div>
       </div>
     <% end %>

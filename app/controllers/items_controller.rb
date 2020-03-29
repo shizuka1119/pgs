@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   #ログインしていないと使用不可！
-  before_action:authenticate_user,{only:[:show, :edit, :update, :destory]}
+  before_action:authenticate_user,{only:[:show,:update,]}
   #本人でないと編集不可！
-  before_action:ensure_correct_user,{only: [:edit, :update, :destory]}
+  before_action:ensure_correct_user,{only: [:update]}
 
   def index
       @items = Item.all
@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   def destroy
   	  @item = Item.find(params[:id])
   	  @item.destroy
-  	  redirect_to items_path
+  	  redirect_to user_path(@item.user)
   end
 
   def ensure_correct_user

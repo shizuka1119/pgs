@@ -1,2 +1,23 @@
-<h1>Admins#edit</h1>
-<p>Find me in app/views/admins/edit.html.erb</p>
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">Admin Edit</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @admin.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+      　<%= form_for(@admin) do |f| %>
+          <p>Name</p>
+          <%= f.text_field :name %>
+          <p>Mail</p>
+          <%= f.email_field :email %>
+          <p>Profile image</p>
+          <%= f.file_field :profile_image%>
+          <%= f.submit 'Save' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
